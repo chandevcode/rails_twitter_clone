@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :tweets, except: %i[edit update]
+  resources :profiles
   root to: 'tweets#index'
 end
