@@ -3,7 +3,11 @@
   <%= render "form" %>
 </div>
 
-<ul id="tweets" class="divide-y">
+<%= turbo_frame_tag "tweets", class: "divide-y list-none" do %>
   <%= render @tweets %>
-</ul>
-  
+<% end %>
+<%= turbo_frame_tag Tweet.new do %>
+  <% if @tweets.none? %>
+    <%= render "empty" %>
+  <% end %>
+<% end %>
