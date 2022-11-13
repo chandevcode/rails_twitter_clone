@@ -1,0 +1,23 @@
+<div class="px-6 py-3" id="<%= dom_id(tweet)%>">
+  <div class="flex space-x-3 items-start pb-3">
+    <div class="flex-shrink-0">
+      <%= profile_image(tweet.user) %></div>
+    <div class="flex-1">
+      <p class="font-bold"> <%= link_to tweet.user.name, profile_path(tweet.user), class: "hover:underline", data: {turbo: false} %></p>
+      <%= link_to tweet, data: {turbo: false} do %>
+        <div class="prose prose-lg"><%= tweet.body %></div>
+      <% end %>
+      <%= render "controls", tweet: tweet %>
+    </div>
+  </div>
+  <p class="pt-3"> Replying to <%= link_to tweet.user.name, profile_path(tweet.user), class: "text-sky-500 hover:text-sky-600" %></p>
+  <div class="flex items-start justify-between space-x-3 py-6 border-b">
+    <%= profile_image(current_user) %>
+    <div class="flex-1">
+      <%= form.label :body, class: "sr-only" %>
+      <%= form.text_area :body, class: "border-none w-full resize-none rounded-md focuse:shadow-none focus:border-none ring-0 focus:ring focus:outline text-lg py-3 px-0 h-full min-h-[100px]", placeholder: "Tweet your reply" %>
+    </div>
+    <%= form.submit "Reply", class: "px-6 py-2 bg-sky-400 text-white font-semibold rounded-full text-center cursor-pointer inline-block hover:bg-sky-500 transition ease-in-out duratin-300" %>
+  </div>
+<% end %>
+</div>
